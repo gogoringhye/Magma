@@ -44,6 +44,15 @@ function loco() {
 }
 loco()
 //---------------------------------------------
+function scrollToTop() {
+  window.scrollTo(0, 0);
+}
+
+// 페이지가 로드된 후에 호출할 수 있도록 이벤트 리스너 등록
+window.onload = function () {
+  // 페이지 로드 후에  맨 위로 스크롤하는 예시
+  setTimeout(scrollToTop, 10);
+};
 
 
 //page2
