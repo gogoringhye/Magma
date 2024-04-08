@@ -2,10 +2,10 @@
 let pTag1 = document.querySelector(".mg-featured-reel-wrap .items");
 let count1 = 0;
 
-//새로운 요소를 생성하고 내용을 복사한다.
+//새로운 요소 생성하고 내용 복사
 let newItems = pTag1.cloneNode(true);
 
-//복사한 내용을 다음 태그로 삽입한다.
+//복사한 내용을 다음 태그로 삽입
 let nextElement = document.querySelector(".mg-featured-reel-wrap");
 nextElement.appendChild(newItems);
 nextElement.style.width = pTag1.offsetWidth * 2 + "px";
