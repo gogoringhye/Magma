@@ -1,22 +1,17 @@
 function loco() {
   gsap.registerPlugin(ScrollTrigger);
 
-  // Using Locomotive Scroll from Locomotive https://github.com/locomotivemtl/locomotive-scroll
-
   const locoScroll = new LocomotiveScroll({
     el: document.querySelector("#main"),
     smooth: true
   });
-  // each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
-  // Locomotive Scroll이 업데이트될 때마다 스크롤 트리거에 업데이트하라고 말합니다(동기식 위치 지정)
+
   locoScroll.on("scroll", ScrollTrigger.update);
 
-  // tell ScrollTrigger to use these proxy methods for the ".smooth-scroll" element since Locomotive Scroll is hijacking things
-  //ScrollTrigger에 Locomotive Scroll이  hijacking things하고 있으므로 "smooth-scroll" 요소에 대해 이러한 프록시 방법을 사용하도록 지시합니다
   ScrollTrigger.scrollerProxy("#main", {
     scrollTop(value) {
       return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
-    }, // we don't have to define a scrollLeft because we're only scrolling vertically.//scrollLeft 정의할 필요가 없습니다. 왜냐하면 우리는 오직 수직으로 스크롤하기 때문입니다.
+    },
     getBoundingClientRect() {
       return {
         top: 0,
@@ -25,25 +20,17 @@ function loco() {
         height: window.innerHeight
       };
     },
-    // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
-    // LocomotiveScroll은 모바일 장치에서 완전히 다르게 처리합니다. 심지어 용기를 변형시키지도 않습니다. 따라서 올바른 행동을 취하고 불안감을 피하기 위해서는 위치가 고정된 것을 핀으로 고정해야 합니다. 우리는 용기(기관차 스크롤 제어 요소)에 변형이 적용되는지 확인함으로써 그것을 감지합니다
+
     pinType: document.querySelector("#main").style.transform ? "transform" : "fixed"
   });
 
-
-
-
-
-  // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll. 
-  //창이 업데이트될 때마다 스크롤 트리거를 새로 고치고 LocomotiveScroll을 업데이트해야 합니다.
   ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
 
-  // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
-  //모든 것이 설정된 후, 스크롤 트리거를 새로 고치고() 고정 등을 위해 패딩이 추가되었을 수 있으므로 기관차 스크롤을 업데이트합니다.
   ScrollTrigger.refresh();
 }
 loco()
 //---------------------------------------------
+
 function scrollToTop() {
   window.scrollTo(0, 0);
 }
@@ -58,7 +45,7 @@ window.onload = function () {
 //page2
 let clutter = "";
 
-//.textContent --> 텍스트 콘텐츠을 가져온다
+//.textContent --> 텍스트 콘텐츠를 가져옴
 let page2_h2 = document.querySelector('#page2>h2').textContent.split("");
 page2_h2.forEach((dets) => {
   clutter += `<span>${dets}</span>`;
@@ -77,7 +64,6 @@ gsap.to("#page2>h2>span", {
   color: "#fff"
 })
 
-
 gsap.to("#page2>.background", {
   scrollTrigger: {
     trigger: "#page2",
@@ -88,6 +74,7 @@ gsap.to("#page2>.background", {
   },
   opacity: 0
 })
+
 //page3
 function canvas() {
   const canvas = document.querySelector("#page3>canvas");
@@ -243,8 +230,6 @@ canvas()
 
 // page4
 let clutter2 = "";
-
-//.textContent --> 텍스트 콘텐츠을 가져온다
 let page4_h2 = document.querySelector('#page4>h2').textContent.split("");
 page4_h2.forEach((dets) => {
   clutter2 += `<span>${dets}</span>`;
@@ -262,7 +247,6 @@ gsap.to("#page4>h2>span", {
   stagger: 0.2,
   color: "#fff"
 })
-
 
 gsap.to("#page4>.background", {
   scrollTrigger: {
@@ -415,11 +399,8 @@ function canvas5() {
 }
 canvas5()
 
-
 //page6
 let clutter3 = "";
-
-//.textContent --> 텍스트 콘텐츠을 가져온다
 let page6_h2 = document.querySelector('#page6>h2').textContent.split("");
 page6_h2.forEach((dets) => {
   clutter3 += `<span>${dets}</span>`;
@@ -437,7 +418,6 @@ gsap.to("#page6>h2>span", {
   stagger: 0.2,
   color: "#fff"
 })
-
 
 //page7
 function canvas7() {
@@ -695,8 +675,6 @@ gsap.to(".page7-cir", {
   }
 })
 
-
-
 gsap.to(".page7-cir-inner", {
   scrollTrigger: {
     trigger: `.page7-cir-inner`,
@@ -707,8 +685,6 @@ gsap.to(".page7-cir-inner", {
   },
   backgroundColor: `#0a3bce91`,
 })
-
-
 
 //page8
 gsap.to("#page8", {
@@ -721,7 +697,6 @@ gsap.to("#page8", {
   },
 
 })
-
 
 let clutter4 = "";
 
@@ -946,7 +921,6 @@ mgi.forEach((item) => {
     stagger: 0.2
   })
 })
-
 
 //전체 background
 gsap.fromTo("#main", {
