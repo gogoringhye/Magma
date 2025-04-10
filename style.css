@@ -503,7 +503,7 @@ button {
 }
 
 #page8 .video>video {
-  position: relative;
+  position: absolute;
   z-index: 10;
   height: 100%;
   width: 100%;
@@ -586,7 +586,7 @@ button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-image: url(https://thisismagma.com/wp-content/uploads/2023/04/magma.wp2.cubdev.com-home-1.jpeg);
+  background-image: url(img/aboutus.jpeg);
   background-size: cover;
   left: 5%;
 }
